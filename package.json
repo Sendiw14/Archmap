@@ -10,9 +10,10 @@
     "format": "prettier --check .",
     "format:write": "prettier --write .",
     "lint": "eslint .",
-    "typecheck": "tsc -p tsconfig.json --noEmit",
+    "typecheck": "tsc -p tsconfig.json --noEmit && pnpm --filter @archmap/web typecheck",
     "test": "vitest run",
-    "archmap": "node apps/cli/src/main.ts"
+    "archmap": "node apps/cli/src/main.ts",
+    "demo:data": "mkdir -p apps/web/src/demo-data && node apps/cli/src/main.ts analyze . -e 'fixtures/**' -e fixtures -e 'apps/web/**' --reproducible -q -o apps/web/src/demo-data/archmap.json && node apps/cli/src/main.ts analyze fixtures/circular --reproducible -q -o apps/web/src/demo-data/circular.json && node apps/cli/src/main.ts analyze fixtures/monorepo --reproducible -q -o apps/web/src/demo-data/monorepo.json && node apps/cli/src/main.ts analyze fixtures/type-cycle --reproducible -q -o apps/web/src/demo-data/type-cycle.json"
   },
   "devDependencies": {
     "@archmap/analyzer": "workspace:^",

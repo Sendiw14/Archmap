@@ -1,0 +1,975 @@
+{
+  "metadata": {
+    "analysisId": "5fa9d300727a78b41c92fab4",
+    "schemaVersion": "1.0.0",
+    "analyzerVersion": "0.1.0",
+    "compilerVersion": "typescript@6.0.2",
+    "repository": {
+      "name": "archmap-monorepo",
+      "commit": "509555bbd72b6d25a0384cf0b0cc81890fa8d03f"
+    },
+    "configHash": "caae34c4745edc3f",
+    "status": "completed",
+    "generatedAt": null,
+    "counts": {
+      "filesDiscovered": 14,
+      "filesAnalyzed": 14,
+      "filesExcluded": 9,
+      "filesSkipped": 0
+    }
+  },
+  "nodes": [
+    {
+      "id": "builtin:node:child_process",
+      "kind": "builtin",
+      "path": "node:child_process",
+      "displayName": "node:child_process",
+      "package": null,
+      "language": null
+    },
+    {
+      "id": "builtin:node:crypto",
+      "kind": "builtin",
+      "path": "node:crypto",
+      "displayName": "node:crypto",
+      "package": null,
+      "language": null
+    },
+    {
+      "id": "builtin:node:fs",
+      "kind": "builtin",
+      "path": "node:fs",
+      "displayName": "node:fs",
+      "package": null,
+      "language": null
+    },
+    {
+      "id": "builtin:node:module",
+      "kind": "builtin",
+      "path": "node:module",
+      "displayName": "node:module",
+      "package": null,
+      "language": null
+    },
+    {
+      "id": "builtin:node:os",
+      "kind": "builtin",
+      "path": "node:os",
+      "displayName": "node:os",
+      "package": null,
+      "language": null
+    },
+    {
+      "id": "builtin:node:path",
+      "kind": "builtin",
+      "path": "node:path",
+      "displayName": "node:path",
+      "package": null,
+      "language": null
+    },
+    {
+      "id": "builtin:node:path/posix",
+      "kind": "builtin",
+      "path": "node:path/posix",
+      "displayName": "node:path/posix",
+      "package": null,
+      "language": null
+    },
+    {
+      "id": "external:commander",
+      "kind": "external",
+      "path": "commander",
+      "displayName": "commander",
+      "package": null,
+      "language": null
+    },
+    {
+      "id": "external:ts-morph",
+      "kind": "external",
+      "path": "ts-morph",
+      "displayName": "ts-morph",
+      "package": null,
+      "language": null
+    },
+    {
+      "id": "external:typescript-eslint",
+      "kind": "external",
+      "path": "typescript-eslint",
+      "displayName": "typescript-eslint",
+      "package": null,
+      "language": null
+    },
+    {
+      "id": "external:vitest",
+      "kind": "external",
+      "path": "vitest",
+      "displayName": "vitest",
+      "package": null,
+      "language": null
+    },
+    {
+      "id": "external:zod",
+      "kind": "external",
+      "path": "zod",
+      "displayName": "zod",
+      "package": null,
+      "language": null
+    },
+    {
+      "id": "file:apps/cli/src/cli.test.ts",
+      "kind": "file",
+      "path": "apps/cli/src/cli.test.ts",
+      "displayName": "cli.test.ts",
+      "package": "@archmap/cli",
+      "language": "ts"
+    },
+    {
+      "id": "file:apps/cli/src/main.ts",
+      "kind": "file",
+      "path": "apps/cli/src/main.ts",
+      "displayName": "main.ts",
+      "package": "@archmap/cli",
+      "language": "ts"
+    },
+    {
+      "id": "file:apps/cli/src/report.ts",
+      "kind": "file",
+      "path": "apps/cli/src/report.ts",
+      "displayName": "report.ts",
+      "package": "@archmap/cli",
+      "language": "ts"
+    },
+    {
+      "id": "file:eslint.config.js",
+      "kind": "file",
+      "path": "eslint.config.js",
+      "displayName": "eslint.config.js",
+      "package": "archmap-monorepo",
+      "language": "js"
+    },
+    {
+      "id": "file:packages/analyzer/src/golden.test.ts",
+      "kind": "file",
+      "path": "packages/analyzer/src/golden.test.ts",
+      "displayName": "golden.test.ts",
+      "package": "@archmap/analyzer",
+      "language": "ts"
+    },
+    {
+      "id": "file:packages/analyzer/src/index.ts",
+      "kind": "file",
+      "path": "packages/analyzer/src/index.ts",
+      "displayName": "index.ts",
+      "package": "@archmap/analyzer",
+      "language": "ts"
+    },
+    {
+      "id": "file:packages/compiler-adapter/src/index.ts",
+      "kind": "file",
+      "path": "packages/compiler-adapter/src/index.ts",
+      "displayName": "index.ts",
+      "package": "@archmap/compiler-adapter",
+      "language": "ts"
+    },
+    {
+      "id": "file:packages/graph-core/src/findings.ts",
+      "kind": "file",
+      "path": "packages/graph-core/src/findings.ts",
+      "displayName": "findings.ts",
+      "package": "@archmap/graph-core",
+      "language": "ts"
+    },
+    {
+      "id": "file:packages/graph-core/src/index.test.ts",
+      "kind": "file",
+      "path": "packages/graph-core/src/index.test.ts",
+      "displayName": "index.test.ts",
+      "package": "@archmap/graph-core",
+      "language": "ts"
+    },
+    {
+      "id": "file:packages/graph-core/src/index.ts",
+      "kind": "file",
+      "path": "packages/graph-core/src/index.ts",
+      "displayName": "index.ts",
+      "package": "@archmap/graph-core",
+      "language": "ts"
+    },
+    {
+      "id": "file:packages/graph-schema/src/index.ts",
+      "kind": "file",
+      "path": "packages/graph-schema/src/index.ts",
+      "displayName": "index.ts",
+      "package": "@archmap/graph-schema",
+      "language": "ts"
+    },
+    {
+      "id": "file:tests/performance/bench-analyzer.ts",
+      "kind": "file",
+      "path": "tests/performance/bench-analyzer.ts",
+      "displayName": "bench-analyzer.ts",
+      "package": "archmap-monorepo",
+      "language": "ts"
+    },
+    {
+      "id": "file:tests/security/analyzer-boundaries.test.ts",
+      "kind": "file",
+      "path": "tests/security/analyzer-boundaries.test.ts",
+      "displayName": "analyzer-boundaries.test.ts",
+      "package": "archmap-monorepo",
+      "language": "ts"
+    },
+    {
+      "id": "file:vitest.config.ts",
+      "kind": "file",
+      "path": "vitest.config.ts",
+      "displayName": "vitest.config.ts",
+      "package": "archmap-monorepo",
+      "language": "ts"
+    }
+  ],
+  "edges": [
+    {
+      "id": "file:apps/cli/src/cli.test.ts|import|@archmap/graph-schema|6:1",
+      "source": "file:apps/cli/src/cli.test.ts",
+      "target": "file:packages/graph-schema/src/index.ts",
+      "specifier": "@archmap/graph-schema",
+      "importKind": "import",
+      "dependencyClass": "runtime",
+      "resolution": "resolved",
+      "evidence": {
+        "file": "apps/cli/src/cli.test.ts",
+        "line": 6,
+        "column": 1,
+        "text": "import { ArchmapGraph } from \"@archmap/graph-schema\";"
+      }
+    },
+    {
+      "id": "file:apps/cli/src/cli.test.ts|import|node:child_process|1:1",
+      "source": "file:apps/cli/src/cli.test.ts",
+      "target": "builtin:node:child_process",
+      "specifier": "node:child_process",
+      "importKind": "import",
+      "dependencyClass": "runtime",
+      "resolution": "external",
+      "evidence": {
+        "file": "apps/cli/src/cli.test.ts",
+        "line": 1,
+        "column": 1,
+        "text": "import { spawnSync } from \"node:child_process\";"
+      }
+    },
+    {
+      "id": "file:apps/cli/src/cli.test.ts|import|node:fs|2:1",
+      "source": "file:apps/cli/src/cli.test.ts",
+      "target": "builtin:node:fs",
+      "specifier": "node:fs",
+      "importKind": "import",
+      "dependencyClass": "runtime",
+      "resolution": "external",
+      "evidence": {
+        "file": "apps/cli/src/cli.test.ts",
+        "line": 2,
+        "column": 1,
+        "text": "import fs from \"node:fs\";"
+      }
+    },
+    {
+      "id": "file:apps/cli/src/cli.test.ts|import|node:os|3:1",
+      "source": "file:apps/cli/src/cli.test.ts",
+      "target": "builtin:node:os",
+      "specifier": "node:os",
+      "importKind": "import",
+      "dependencyClass": "runtime",
+      "resolution": "external",
+      "evidence": {
+        "file": "apps/cli/src/cli.test.ts",
+        "line": 3,
+        "column": 1,
+        "text": "import os from \"node:os\";"
+      }
+    },
+    {
+      "id": "file:apps/cli/src/cli.test.ts|import|node:path|4:1",
+      "source": "file:apps/cli/src/cli.test.ts",
+      "target": "builtin:node:path",
+      "specifier": "node:path",
+      "importKind": "import",
+      "dependencyClass": "runtime",
+      "resolution": "external",
+      "evidence": {
+        "file": "apps/cli/src/cli.test.ts",
+        "line": 4,
+        "column": 1,
+        "text": "import path from \"node:path\";"
+      }
+    },
+    {
+      "id": "file:apps/cli/src/cli.test.ts|import|vitest|5:1",
+      "source": "file:apps/cli/src/cli.test.ts",
+      "target": "external:vitest",
+      "specifier": "vitest",
+      "importKind": "import",
+      "dependencyClass": "runtime",
+      "resolution": "external",
+      "evidence": {
+        "file": "apps/cli/src/cli.test.ts",
+        "line": 5,
+        "column": 1,
+        "text": "import { describe, expect, it } from \"vitest\";"
+      }
+    },
+    {
+      "id": "file:apps/cli/src/main.ts|import|./report.ts|6:1",
+      "source": "file:apps/cli/src/main.ts",
+      "target": "file:apps/cli/src/report.ts",
+      "specifier": "./report.ts",
+      "importKind": "import",
+      "dependencyClass": "runtime",
+      "resolution": "resolved",
+      "evidence": {
+        "file": "apps/cli/src/main.ts",
+        "line": 6,
+        "column": 1,
+        "text": "import { toMarkdown } from \"./report.ts\";"
+      }
+    },
+    {
+      "id": "file:apps/cli/src/main.ts|import|@archmap/analyzer|4:1",
+      "source": "file:apps/cli/src/main.ts",
+      "target": "file:packages/analyzer/src/index.ts",
+      "specifier": "@archmap/analyzer",
+      "importKind": "import",
+      "dependencyClass": "runtime",
+      "resolution": "resolved",
+      "evidence": {
+        "file": "apps/cli/src/main.ts",
+        "line": 4,
+        "column": 1,
+        "text": "import { ANALYZER_VERSION, AnalysisError, analyze, compilerVersion } from \"@archmap/analyzer\";"
+      }
+    },
+    {
+      "id": "file:apps/cli/src/main.ts|import|@archmap/graph-schema|5:1",
+      "source": "file:apps/cli/src/main.ts",
+      "target": "file:packages/graph-schema/src/index.ts",
+      "specifier": "@archmap/graph-schema",
+      "importKind": "import",
+      "dependencyClass": "runtime",
+      "resolution": "resolved",
+      "evidence": {
+        "file": "apps/cli/src/main.ts",
+        "line": 5,
+        "column": 1,
+        "text": "import { SCHEMA_VERSION } from \"@archmap/graph-schema\";"
+      }
+    },
+    {
+      "id": "file:apps/cli/src/main.ts|import|commander|3:1",
+      "source": "file:apps/cli/src/main.ts",
+      "target": "external:commander",
+      "specifier": "commander",
+      "importKind": "import",
+      "dependencyClass": "runtime",
+      "resolution": "external",
+      "evidence": {
+        "file": "apps/cli/src/main.ts",
+        "line": 3,
+        "column": 1,
+        "text": "import { Command, InvalidArgumentError } from \"commander\";"
+      }
+    },
+    {
+      "id": "file:apps/cli/src/main.ts|import|node:fs|2:1",
+      "source": "file:apps/cli/src/main.ts",
+      "target": "builtin:node:fs",
+      "specifier": "node:fs",
+      "importKind": "import",
+      "dependencyClass": "runtime",
+      "resolution": "external",
+      "evidence": {
+        "file": "apps/cli/src/main.ts",
+        "line": 2,
+        "column": 1,
+        "text": "import fs from \"node:fs\";"
+      }
+    },
+    {
+      "id": "file:apps/cli/src/report.ts|import|@archmap/graph-core|1:1",
+      "source": "file:apps/cli/src/report.ts",
+      "target": "file:packages/graph-core/src/index.ts",
+      "specifier": "@archmap/graph-core",
+      "importKind": "import",
+      "dependencyClass": "runtime",
+      "resolution": "resolved",
+      "evidence": {
+        "file": "apps/cli/src/report.ts",
+        "line": 1,
+        "column": 1,
+        "text": "import { aggregateByPackage } from \"@archmap/graph-core\";"
+      }
+    },
+    {
+      "id": "file:apps/cli/src/report.ts|import|@archmap/graph-schema|2:1",
+      "source": "file:apps/cli/src/report.ts",
+      "target": "file:packages/graph-schema/src/index.ts",
+      "specifier": "@archmap/graph-schema",
+      "importKind": "import",
+      "dependencyClass": "type-only",
+      "resolution": "resolved",
+      "evidence": {
+        "file": "apps/cli/src/report.ts",
+        "line": 2,
+        "column": 1,
+        "text": "import type { ArchmapGraph } from \"@archmap/graph-schema\";"
+      }
+    },
+    {
+      "id": "file:eslint.config.js|import|typescript-eslint|1:1",
+      "source": "file:eslint.config.js",
+      "target": "external:typescript-eslint",
+      "specifier": "typescript-eslint",
+      "importKind": "import",
+      "dependencyClass": "runtime",
+      "resolution": "external",
+      "evidence": {
+        "file": "eslint.config.js",
+        "line": 1,
+        "column": 1,
+        "text": "import tseslint from \"typescript-eslint\";"
+      }
+    },
+    {
+      "id": "file:packages/analyzer/src/golden.test.ts|import|./index.ts|5:1",
+      "source": "file:packages/analyzer/src/golden.test.ts",
+      "target": "file:packages/analyzer/src/index.ts",
+      "specifier": "./index.ts",
+      "importKind": "import",
+      "dependencyClass": "runtime",
+      "resolution": "resolved",
+      "evidence": {
+        "file": "packages/analyzer/src/golden.test.ts",
+        "line": 5,
+        "column": 1,
+        "text": "import { analyze } from \"./index.ts\";"
+      }
+    },
+    {
+      "id": "file:packages/analyzer/src/golden.test.ts|import|@archmap/graph-schema|4:1",
+      "source": "file:packages/analyzer/src/golden.test.ts",
+      "target": "file:packages/graph-schema/src/index.ts",
+      "specifier": "@archmap/graph-schema",
+      "importKind": "import",
+      "dependencyClass": "runtime",
+      "resolution": "resolved",
+      "evidence": {
+        "file": "packages/analyzer/src/golden.test.ts",
+        "line": 4,
+        "column": 1,
+        "text": "import { ArchmapGraph } from \"@archmap/graph-schema\";"
+      }
+    },
+    {
+      "id": "file:packages/analyzer/src/golden.test.ts|import|node:fs|1:1",
+      "source": "file:packages/analyzer/src/golden.test.ts",
+      "target": "builtin:node:fs",
+      "specifier": "node:fs",
+      "importKind": "import",
+      "dependencyClass": "runtime",
+      "resolution": "external",
+      "evidence": {
+        "file": "packages/analyzer/src/golden.test.ts",
+        "line": 1,
+        "column": 1,
+        "text": "import fs from \"node:fs\";"
+      }
+    },
+    {
+      "id": "file:packages/analyzer/src/golden.test.ts|import|node:path|2:1",
+      "source": "file:packages/analyzer/src/golden.test.ts",
+      "target": "builtin:node:path",
+      "specifier": "node:path",
+      "importKind": "import",
+      "dependencyClass": "runtime",
+      "resolution": "external",
+      "evidence": {
+        "file": "packages/analyzer/src/golden.test.ts",
+        "line": 2,
+        "column": 1,
+        "text": "import path from \"node:path\";"
+      }
+    },
+    {
+      "id": "file:packages/analyzer/src/golden.test.ts|import|vitest|3:1",
+      "source": "file:packages/analyzer/src/golden.test.ts",
+      "target": "external:vitest",
+      "specifier": "vitest",
+      "importKind": "import",
+      "dependencyClass": "runtime",
+      "resolution": "external",
+      "evidence": {
+        "file": "packages/analyzer/src/golden.test.ts",
+        "line": 3,
+        "column": 1,
+        "text": "import { describe, expect, it } from \"vitest\";"
+      }
+    },
+    {
+      "id": "file:packages/analyzer/src/index.ts|import|@archmap/compiler-adapter|5:1",
+      "source": "file:packages/analyzer/src/index.ts",
+      "target": "file:packages/compiler-adapter/src/index.ts",
+      "specifier": "@archmap/compiler-adapter",
+      "importKind": "import",
+      "dependencyClass": "runtime",
+      "resolution": "resolved",
+      "evidence": {
+        "file": "packages/analyzer/src/index.ts",
+        "line": 5,
+        "column": 1,
+        "text": "import { compilerVersion, createResolver, extractReferences } from \"@archmap/compiler-adapter\";"
+      }
+    },
+    {
+      "id": "file:packages/analyzer/src/index.ts|import|@archmap/graph-core/findings|6:1",
+      "source": "file:packages/analyzer/src/index.ts",
+      "target": "file:packages/graph-core/src/findings.ts",
+      "specifier": "@archmap/graph-core/findings",
+      "importKind": "import",
+      "dependencyClass": "runtime",
+      "resolution": "resolved",
+      "evidence": {
+        "file": "packages/analyzer/src/index.ts",
+        "line": 6,
+        "column": 1,
+        "text": "import { computeFindings } from \"@archmap/graph-core/findings\";"
+      }
+    },
+    {
+      "id": "file:packages/analyzer/src/index.ts|import|@archmap/graph-schema|7:1",
+      "source": "file:packages/analyzer/src/index.ts",
+      "target": "file:packages/graph-schema/src/index.ts",
+      "specifier": "@archmap/graph-schema",
+      "importKind": "import",
+      "dependencyClass": "runtime",
+      "resolution": "resolved",
+      "evidence": {
+        "file": "packages/analyzer/src/index.ts",
+        "line": 7,
+        "column": 1,
+        "text": "import { SCHEMA_VERSION, type AnalysisStatus, type ArchmapGraph, type DependencyClass, type Diagnostic, type GraphEdge, type GraphNode, type Language, } from..."
+      }
+    },
+    {
+      "id": "file:packages/analyzer/src/index.ts|import|node:crypto|1:1",
+      "source": "file:packages/analyzer/src/index.ts",
+      "target": "builtin:node:crypto",
+      "specifier": "node:crypto",
+      "importKind": "import",
+      "dependencyClass": "runtime",
+      "resolution": "external",
+      "evidence": {
+        "file": "packages/analyzer/src/index.ts",
+        "line": 1,
+        "column": 1,
+        "text": "import { createHash } from \"node:crypto\";"
+      }
+    },
+    {
+      "id": "file:packages/analyzer/src/index.ts|import|node:fs|2:1",
+      "source": "file:packages/analyzer/src/index.ts",
+      "target": "builtin:node:fs",
+      "specifier": "node:fs",
+      "importKind": "import",
+      "dependencyClass": "runtime",
+      "resolution": "external",
+      "evidence": {
+        "file": "packages/analyzer/src/index.ts",
+        "line": 2,
+        "column": 1,
+        "text": "import fs from \"node:fs\";"
+      }
+    },
+    {
+      "id": "file:packages/analyzer/src/index.ts|import|node:path/posix|4:1",
+      "source": "file:packages/analyzer/src/index.ts",
+      "target": "builtin:node:path/posix",
+      "specifier": "node:path/posix",
+      "importKind": "import",
+      "dependencyClass": "runtime",
+      "resolution": "external",
+      "evidence": {
+        "file": "packages/analyzer/src/index.ts",
+        "line": 4,
+        "column": 1,
+        "text": "import path from \"node:path/posix\";"
+      }
+    },
+    {
+      "id": "file:packages/analyzer/src/index.ts|import|node:path|3:1",
+      "source": "file:packages/analyzer/src/index.ts",
+      "target": "builtin:node:path",
+      "specifier": "node:path",
+      "importKind": "import",
+      "dependencyClass": "runtime",
+      "resolution": "external",
+      "evidence": {
+        "file": "packages/analyzer/src/index.ts",
+        "line": 3,
+        "column": 1,
+        "text": "import nodePath from \"node:path\";"
+      }
+    },
+    {
+      "id": "file:packages/compiler-adapter/src/index.ts|import|node:module|6:1",
+      "source": "file:packages/compiler-adapter/src/index.ts",
+      "target": "builtin:node:module",
+      "specifier": "node:module",
+      "importKind": "import",
+      "dependencyClass": "runtime",
+      "resolution": "external",
+      "evidence": {
+        "file": "packages/compiler-adapter/src/index.ts",
+        "line": 6,
+        "column": 1,
+        "text": "import { builtinModules } from \"node:module\";"
+      }
+    },
+    {
+      "id": "file:packages/compiler-adapter/src/index.ts|import|node:path/posix|7:1",
+      "source": "file:packages/compiler-adapter/src/index.ts",
+      "target": "builtin:node:path/posix",
+      "specifier": "node:path/posix",
+      "importKind": "import",
+      "dependencyClass": "runtime",
+      "resolution": "external",
+      "evidence": {
+        "file": "packages/compiler-adapter/src/index.ts",
+        "line": 7,
+        "column": 1,
+        "text": "import path from \"node:path/posix\";"
+      }
+    },
+    {
+      "id": "file:packages/compiler-adapter/src/index.ts|import|ts-morph|8:1",
+      "source": "file:packages/compiler-adapter/src/index.ts",
+      "target": "external:ts-morph",
+      "specifier": "ts-morph",
+      "importKind": "import",
+      "dependencyClass": "runtime",
+      "resolution": "external",
+      "evidence": {
+        "file": "packages/compiler-adapter/src/index.ts",
+        "line": 8,
+        "column": 1,
+        "text": "import { ts } from \"ts-morph\";"
+      }
+    },
+    {
+      "id": "file:packages/graph-core/src/findings.ts|import|./index.ts|3:1",
+      "source": "file:packages/graph-core/src/findings.ts",
+      "target": "file:packages/graph-core/src/index.ts",
+      "specifier": "./index.ts",
+      "importKind": "import",
+      "dependencyClass": "runtime",
+      "resolution": "resolved",
+      "evidence": {
+        "file": "packages/graph-core/src/findings.ts",
+        "line": 3,
+        "column": 1,
+        "text": "import { RULES, buildIndex, findCycles, nodeMetrics, type GraphIndex } from \"./index.ts\";"
+      }
+    },
+    {
+      "id": "file:packages/graph-core/src/findings.ts|import|@archmap/graph-schema|2:1",
+      "source": "file:packages/graph-core/src/findings.ts",
+      "target": "file:packages/graph-schema/src/index.ts",
+      "specifier": "@archmap/graph-schema",
+      "importKind": "import",
+      "dependencyClass": "type-only",
+      "resolution": "resolved",
+      "evidence": {
+        "file": "packages/graph-core/src/findings.ts",
+        "line": 2,
+        "column": 1,
+        "text": "import type { ArchmapGraph, Finding } from \"@archmap/graph-schema\";"
+      }
+    },
+    {
+      "id": "file:packages/graph-core/src/findings.ts|import|node:crypto|1:1",
+      "source": "file:packages/graph-core/src/findings.ts",
+      "target": "builtin:node:crypto",
+      "specifier": "node:crypto",
+      "importKind": "import",
+      "dependencyClass": "runtime",
+      "resolution": "external",
+      "evidence": {
+        "file": "packages/graph-core/src/findings.ts",
+        "line": 1,
+        "column": 1,
+        "text": "import { createHash } from \"node:crypto\";"
+      }
+    },
+    {
+      "id": "file:packages/graph-core/src/index.test.ts|import|./findings.ts|11:1",
+      "source": "file:packages/graph-core/src/index.test.ts",
+      "target": "file:packages/graph-core/src/findings.ts",
+      "specifier": "./findings.ts",
+      "importKind": "import",
+      "dependencyClass": "runtime",
+      "resolution": "resolved",
+      "evidence": {
+        "file": "packages/graph-core/src/index.test.ts",
+        "line": 11,
+        "column": 1,
+        "text": "import { computeFindings } from \"./findings.ts\";"
+      }
+    },
+    {
+      "id": "file:packages/graph-core/src/index.test.ts|import|./index.ts|3:1",
+      "source": "file:packages/graph-core/src/index.test.ts",
+      "target": "file:packages/graph-core/src/index.ts",
+      "specifier": "./index.ts",
+      "importKind": "import",
+      "dependencyClass": "runtime",
+      "resolution": "resolved",
+      "evidence": {
+        "file": "packages/graph-core/src/index.test.ts",
+        "line": 3,
+        "column": 1,
+        "text": "import { aggregateByPackage, buildIndex, dependencyPath, findCycles, potentialImpact, stronglyConnectedComponents, } from \"./index.ts\";"
+      }
+    },
+    {
+      "id": "file:packages/graph-core/src/index.test.ts|import|@archmap/graph-schema|2:1",
+      "source": "file:packages/graph-core/src/index.test.ts",
+      "target": "file:packages/graph-schema/src/index.ts",
+      "specifier": "@archmap/graph-schema",
+      "importKind": "import",
+      "dependencyClass": "type-only",
+      "resolution": "resolved",
+      "evidence": {
+        "file": "packages/graph-core/src/index.test.ts",
+        "line": 2,
+        "column": 1,
+        "text": "import type { GraphEdge, GraphNode } from \"@archmap/graph-schema\";"
+      }
+    },
+    {
+      "id": "file:packages/graph-core/src/index.test.ts|import|vitest|1:1",
+      "source": "file:packages/graph-core/src/index.test.ts",
+      "target": "external:vitest",
+      "specifier": "vitest",
+      "importKind": "import",
+      "dependencyClass": "runtime",
+      "resolution": "external",
+      "evidence": {
+        "file": "packages/graph-core/src/index.test.ts",
+        "line": 1,
+        "column": 1,
+        "text": "import { describe, expect, it } from \"vitest\";"
+      }
+    },
+    {
+      "id": "file:packages/graph-core/src/index.ts|import|@archmap/graph-schema|1:1",
+      "source": "file:packages/graph-core/src/index.ts",
+      "target": "file:packages/graph-schema/src/index.ts",
+      "specifier": "@archmap/graph-schema",
+      "importKind": "import",
+      "dependencyClass": "type-only",
+      "resolution": "resolved",
+      "evidence": {
+        "file": "packages/graph-core/src/index.ts",
+        "line": 1,
+        "column": 1,
+        "text": "import type { ArchmapGraph, GraphEdge } from \"@archmap/graph-schema\";"
+      }
+    },
+    {
+      "id": "file:packages/graph-schema/src/index.ts|import|zod|1:1",
+      "source": "file:packages/graph-schema/src/index.ts",
+      "target": "external:zod",
+      "specifier": "zod",
+      "importKind": "import",
+      "dependencyClass": "runtime",
+      "resolution": "external",
+      "evidence": {
+        "file": "packages/graph-schema/src/index.ts",
+        "line": 1,
+        "column": 1,
+        "text": "import { z } from \"zod\";"
+      }
+    },
+    {
+      "id": "file:tests/performance/bench-analyzer.ts|import|@archmap/analyzer|5:1",
+      "source": "file:tests/performance/bench-analyzer.ts",
+      "target": "file:packages/analyzer/src/index.ts",
+      "specifier": "@archmap/analyzer",
+      "importKind": "import",
+      "dependencyClass": "runtime",
+      "resolution": "resolved",
+      "evidence": {
+        "file": "tests/performance/bench-analyzer.ts",
+        "line": 5,
+        "column": 1,
+        "text": "import { analyze } from \"@archmap/analyzer\";"
+      }
+    },
+    {
+      "id": "file:tests/performance/bench-analyzer.ts|import|node:fs|3:1",
+      "source": "file:tests/performance/bench-analyzer.ts",
+      "target": "builtin:node:fs",
+      "specifier": "node:fs",
+      "importKind": "import",
+      "dependencyClass": "runtime",
+      "resolution": "external",
+      "evidence": {
+        "file": "tests/performance/bench-analyzer.ts",
+        "line": 3,
+        "column": 1,
+        "text": "import fs from \"node:fs\";"
+      }
+    },
+    {
+      "id": "file:tests/performance/bench-analyzer.ts|import|node:path|4:1",
+      "source": "file:tests/performance/bench-analyzer.ts",
+      "target": "builtin:node:path",
+      "specifier": "node:path",
+      "importKind": "import",
+      "dependencyClass": "runtime",
+      "resolution": "external",
+      "evidence": {
+        "file": "tests/performance/bench-analyzer.ts",
+        "line": 4,
+        "column": 1,
+        "text": "import path from \"node:path\";"
+      }
+    },
+    {
+      "id": "file:tests/security/analyzer-boundaries.test.ts|import|@archmap/analyzer|5:1",
+      "source": "file:tests/security/analyzer-boundaries.test.ts",
+      "target": "file:packages/analyzer/src/index.ts",
+      "specifier": "@archmap/analyzer",
+      "importKind": "import",
+      "dependencyClass": "runtime",
+      "resolution": "resolved",
+      "evidence": {
+        "file": "tests/security/analyzer-boundaries.test.ts",
+        "line": 5,
+        "column": 1,
+        "text": "import { analyze } from \"@archmap/analyzer\";"
+      }
+    },
+    {
+      "id": "file:tests/security/analyzer-boundaries.test.ts|import|node:fs|1:1",
+      "source": "file:tests/security/analyzer-boundaries.test.ts",
+      "target": "builtin:node:fs",
+      "specifier": "node:fs",
+      "importKind": "import",
+      "dependencyClass": "runtime",
+      "resolution": "external",
+      "evidence": {
+        "file": "tests/security/analyzer-boundaries.test.ts",
+        "line": 1,
+        "column": 1,
+        "text": "import fs from \"node:fs\";"
+      }
+    },
+    {
+      "id": "file:tests/security/analyzer-boundaries.test.ts|import|node:os|2:1",
+      "source": "file:tests/security/analyzer-boundaries.test.ts",
+      "target": "builtin:node:os",
+      "specifier": "node:os",
+      "importKind": "import",
+      "dependencyClass": "runtime",
+      "resolution": "external",
+      "evidence": {
+        "file": "tests/security/analyzer-boundaries.test.ts",
+        "line": 2,
+        "column": 1,
+        "text": "import os from \"node:os\";"
+      }
+    },
+    {
+      "id": "file:tests/security/analyzer-boundaries.test.ts|import|node:path|3:1",
+      "source": "file:tests/security/analyzer-boundaries.test.ts",
+      "target": "builtin:node:path",
+      "specifier": "node:path",
+      "importKind": "import",
+      "dependencyClass": "runtime",
+      "resolution": "external",
+      "evidence": {
+        "file": "tests/security/analyzer-boundaries.test.ts",
+        "line": 3,
+        "column": 1,
+        "text": "import path from \"node:path\";"
+      }
+    },
+    {
+      "id": "file:tests/security/analyzer-boundaries.test.ts|import|vitest|4:1",
+      "source": "file:tests/security/analyzer-boundaries.test.ts",
+      "target": "external:vitest",
+      "specifier": "vitest",
+      "importKind": "import",
+      "dependencyClass": "runtime",
+      "resolution": "external",
+      "evidence": {
+        "file": "tests/security/analyzer-boundaries.test.ts",
+        "line": 4,
+        "column": 1,
+        "text": "import { afterAll, describe, expect, it } from \"vitest\";"
+      }
+    },
+    {
+      "id": "file:vitest.config.ts|import|vitest/config|1:1",
+      "source": "file:vitest.config.ts",
+      "target": "external:vitest",
+      "specifier": "vitest/config",
+      "importKind": "import",
+      "dependencyClass": "runtime",
+      "resolution": "external",
+      "evidence": {
+        "file": "vitest.config.ts",
+        "line": 1,
+        "column": 1,
+        "text": "import { defineConfig } from \"vitest/config\";"
+      }
+    }
+  ],
+  "findings": [
+    {
+      "id": "finding:d94ed6a51c6e1604",
+      "category": "hotspot",
+      "severity": "info",
+      "nodes": [
+        "file:packages/graph-schema/src/index.ts"
+      ],
+      "evidence": [],
+      "explanation": "High coupling: fan-in 8, fan-out 0 (threshold 8).",
+      "rule": "coupling-zscore@1"
+    }
+  ],
+  "diagnostics": [],
+  "coverage": {
+    "supportedConstructs": [
+      "import declarations (default, named, namespace, side-effect)",
+      "type-only imports (import type, all-type named imports)",
+      "export ... from re-exports (including export * and type-only)",
+      "CommonJS require() with a string literal",
+      "import x = require('...')",
+      "dynamic import() with a string literal",
+      "typeof import('...') type references",
+      "tsconfig/jsconfig paths, baseUrl, extends (files inside the repository)",
+      "package.json exports/imports via TypeScript module resolution",
+      "workspace packages (package.json name) including source-entry fallback"
+    ],
+    "importKinds": {
+      "import": 47
+    },
+    "resolutions": {
+      "external": 28,
+      "resolved": 19
+    },
+    "unsupportedExpressions": 0,
+    "filesWithParseErrors": 0
+  }
+}

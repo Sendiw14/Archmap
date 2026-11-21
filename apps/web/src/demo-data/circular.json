@@ -1,0 +1,159 @@
+{
+  "metadata": {
+    "analysisId": "dbed5a503576a99b49c5839e",
+    "schemaVersion": "1.0.0",
+    "analyzerVersion": "0.1.0",
+    "compilerVersion": "typescript@6.0.2",
+    "repository": {
+      "name": "circular",
+      "commit": null
+    },
+    "configHash": "4f091ca6d7b1b09c",
+    "status": "completed",
+    "generatedAt": null,
+    "counts": {
+      "filesDiscovered": 4,
+      "filesAnalyzed": 4,
+      "filesExcluded": 0,
+      "filesSkipped": 0
+    }
+  },
+  "nodes": [
+    {
+      "id": "file:a.ts",
+      "kind": "file",
+      "path": "a.ts",
+      "displayName": "a.ts",
+      "package": null,
+      "language": "ts"
+    },
+    {
+      "id": "file:b.ts",
+      "kind": "file",
+      "path": "b.ts",
+      "displayName": "b.ts",
+      "package": null,
+      "language": "ts"
+    },
+    {
+      "id": "file:c.ts",
+      "kind": "file",
+      "path": "c.ts",
+      "displayName": "c.ts",
+      "package": null,
+      "language": "ts"
+    },
+    {
+      "id": "file:d.ts",
+      "kind": "file",
+      "path": "d.ts",
+      "displayName": "d.ts",
+      "package": null,
+      "language": "ts"
+    }
+  ],
+  "edges": [
+    {
+      "id": "file:a.ts|import|./b|1:1",
+      "source": "file:a.ts",
+      "target": "file:b.ts",
+      "specifier": "./b",
+      "importKind": "import",
+      "dependencyClass": "runtime",
+      "resolution": "resolved",
+      "evidence": {
+        "file": "a.ts",
+        "line": 1,
+        "column": 1,
+        "text": "import \"./b\";"
+      }
+    },
+    {
+      "id": "file:b.ts|import|./c|1:1",
+      "source": "file:b.ts",
+      "target": "file:c.ts",
+      "specifier": "./c",
+      "importKind": "import",
+      "dependencyClass": "runtime",
+      "resolution": "resolved",
+      "evidence": {
+        "file": "b.ts",
+        "line": 1,
+        "column": 1,
+        "text": "import \"./c\";"
+      }
+    },
+    {
+      "id": "file:c.ts|import|./a|1:1",
+      "source": "file:c.ts",
+      "target": "file:a.ts",
+      "specifier": "./a",
+      "importKind": "import",
+      "dependencyClass": "runtime",
+      "resolution": "resolved",
+      "evidence": {
+        "file": "c.ts",
+        "line": 1,
+        "column": 1,
+        "text": "import \"./a\";"
+      }
+    },
+    {
+      "id": "file:d.ts|import|./a|1:1",
+      "source": "file:d.ts",
+      "target": "file:a.ts",
+      "specifier": "./a",
+      "importKind": "import",
+      "dependencyClass": "runtime",
+      "resolution": "resolved",
+      "evidence": {
+        "file": "d.ts",
+        "line": 1,
+        "column": 1,
+        "text": "import \"./a\";"
+      }
+    }
+  ],
+  "findings": [
+    {
+      "id": "finding:4d0b8438090071c1",
+      "category": "runtime-cycle",
+      "severity": "warning",
+      "nodes": [
+        "file:a.ts",
+        "file:b.ts",
+        "file:c.ts"
+      ],
+      "evidence": [
+        "file:a.ts|import|./b|1:1",
+        "file:b.ts|import|./c|1:1",
+        "file:c.ts|import|./a|1:1"
+      ],
+      "explanation": "3 modules form a circular dependency through runtime imports.",
+      "rule": "scc-tarjan@1"
+    }
+  ],
+  "diagnostics": [],
+  "coverage": {
+    "supportedConstructs": [
+      "import declarations (default, named, namespace, side-effect)",
+      "type-only imports (import type, all-type named imports)",
+      "export ... from re-exports (including export * and type-only)",
+      "CommonJS require() with a string literal",
+      "import x = require('...')",
+      "dynamic import() with a string literal",
+      "typeof import('...') type references",
+      "tsconfig/jsconfig paths, baseUrl, extends (files inside the repository)",
+      "package.json exports/imports via TypeScript module resolution",
+      "workspace packages (package.json name) including source-entry fallback"
+    ],
+    "importKinds": {
+      "import": 4
+    },
+    "resolutions": {
+      "resolved": 4
+    },
+    "unsupportedExpressions": 0,
+    "filesWithParseErrors": 0
+  }
+}

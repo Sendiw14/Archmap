@@ -3,7 +3,7 @@ import fs from "node:fs";
 import nodePath from "node:path";
 import path from "node:path/posix";
 import { compilerVersion, createResolver, extractReferences } from "@archmap/compiler-adapter";
-import { computeFindings } from "@archmap/graph-core";
+import { computeFindings } from "@archmap/graph-core/findings";
 import {
   SCHEMA_VERSION,
   type AnalysisStatus,

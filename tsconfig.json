@@ -16,5 +16,5 @@
     "resolveJsonModule": true
   },
   "include": ["apps/*/src", "packages/*/src", "tests", "vitest.config.ts", "eslint.config.js"],
-  "exclude": ["fixtures"]
+  "exclude": ["fixtures", "apps/web"]
 }

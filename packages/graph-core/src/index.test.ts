@@ -3,12 +3,12 @@ import type { GraphEdge, GraphNode } from "@archmap/graph-schema";
 import {
   aggregateByPackage,
   buildIndex,
-  computeFindings,
   dependencyPath,
   findCycles,
   potentialImpact,
   stronglyConnectedComponents,
 } from "./index.ts";
+import { computeFindings } from "./findings.ts";
 
 const node = (id: string, pkg: string | null = null): GraphNode => ({
   id,

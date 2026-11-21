@@ -1,0 +1,337 @@
+@import "tailwindcss";
+
+/*
+ * Design tokens (spec 10.1). Contrast is verified by src/styles/contrast.test.ts:
+ * text pairs >= 4.5:1, graphics and control borders >= 3:1.
+ * --color-primary / --color-accent are for graphics and fills only; use the
+ * *-strong variants for text and for filled controls that carry white text.
+ */
+@theme {
+  --color-bg: #ffffff;
+  --color-surface: #f7f9fc;
+  --color-elevated: #f1f5fb;
+  --color-ink: #151b2b;
+  --color-muted: #526079;
+  --color-line: #e2e8f0;
+  --color-control: #6b7a92;
+
+  --color-primary: #476cf0;
+  --color-primary-strong: #3452d1;
+  --color-primary-soft: #e4eafd;
+  --color-accent: #8d85f6;
+  --color-accent-strong: #5a50d9;
+  --color-accent-soft: #ece9fd;
+
+  --color-danger: #b42318;
+  --color-danger-soft: #fdecea;
+  --color-warning: #8a4b08;
+  --color-warning-soft: #fdf1dc;
+  --color-success: #0b6b46;
+  --color-success-soft: #e3f5ec;
+  --color-focus: #3452d1;
+
+  --color-edge: #7a88a1;
+  --color-cycle: #b54708;
+
+  --ease-out-soft: cubic-bezier(0.2, 0.7, 0.2, 1);
+}
+
+@theme inline {
+  --font-display: var(--font-sora), ui-sans-serif, system-ui, sans-serif;
+  --font-sans: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
+  --font-mono: var(--font-jetbrains), ui-monospace, SFMono-Regular, Menlo, monospace;
+}
+
+@layer base {
+  html {
+    background: var(--color-bg);
+    color: var(--color-ink);
+    -webkit-text-size-adjust: 100%;
+  }
+  body {
+    font-family: var(--font-sans);
+    font-size: 15px;
+    line-height: 1.5;
+    min-height: 100dvh;
+  }
+  :focus-visible {
+    outline: 2px solid var(--color-focus);
+    outline-offset: 2px;
+    border-radius: 4px;
+  }
+  button,
+  select,
+  input {
+    font: inherit;
+  }
+  button {
+    cursor: pointer;
+  }
+  code,
+  kbd,
+  pre {
+    font-family: var(--font-mono);
+  }
+}
+
+@layer components {
+  /* ---------------------------------------------------------------- controls */
+  .am-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    min-height: 40px;
+    padding: 0 0.9rem;
+    border-radius: 8px;
+    border: 1px solid var(--color-control);
+    background: var(--color-bg);
+    color: var(--color-ink);
+    font-weight: 500;
+    font-size: 14px;
+    line-height: 1.2;
+    transition:
+      transform 120ms var(--ease-out-soft),
+      opacity 120ms var(--ease-out-soft);
+  }
+  .am-btn:hover {
+    background: var(--color-elevated);
+  }
+  .am-btn:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+  }
+  .am-btn:active {
+    transform: translateY(1px);
+  }
+  .am-btn[aria-pressed="true"],
+  .am-btn[aria-current="true"] {
+    background: var(--color-primary-soft);
+    border-color: var(--color-primary-strong);
+    color: var(--color-ink);
+  }
+  .am-btn-primary {
+    background: var(--color-primary-strong);
+    border-color: var(--color-primary-strong);
+    color: #fff;
+  }
+  .am-btn-primary:hover {
+    background: #2b45b8;
+  }
+  .am-btn-quiet {
+    border-color: transparent;
+    background: transparent;
+  }
+  .am-btn-sm {
+    min-height: 32px;
+    padding: 0 0.6rem;
+    font-size: 13px;
+  }
+  .am-field {
+    width: 100%;
+    min-height: 40px;
+    border: 1px solid var(--color-control);
+    border-radius: 8px;
+    background: var(--color-bg);
+    color: var(--color-ink);
+    padding: 0 0.75rem;
+  }
+  .am-chip {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.3rem;
+    border-radius: 999px;
+    padding: 1px 8px;
+    font-size: 12px;
+    line-height: 1.5;
+    background: var(--color-elevated);
+    color: var(--color-ink);
+    border: 1px solid var(--color-line);
+  }
+  .am-eyebrow {
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--color-muted);
+  }
+  .sr-only-live {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+    clip-path: inset(50%);
+    white-space: nowrap;
+  }
+}
+
+@layer components {
+  /* ------------------------------------------------------------- graph nodes */
+  .am-node {
+    box-sizing: border-box;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 0 10px 0 12px;
+    background: var(--color-bg);
+    border: 1px solid var(--color-control);
+    border-left-width: 4px;
+    border-radius: 8px;
+    color: var(--color-ink);
+    cursor: pointer;
+    transition: opacity 150ms var(--ease-out-soft);
+  }
+  .am-node[data-kind="file"] {
+    border-left-color: var(--color-primary);
+  }
+  .am-node[data-kind="external"] {
+    border-left-color: var(--color-accent-strong);
+    background: var(--color-accent-soft);
+  }
+  .am-node[data-kind="builtin"] {
+    border-left-color: var(--color-muted);
+    background: var(--color-elevated);
+  }
+  .am-node[data-dim="true"] {
+    opacity: 0.28;
+  }
+  .am-node[data-role="selected"] {
+    box-shadow: 0 0 0 3px var(--color-primary-strong);
+    border-color: var(--color-primary-strong);
+  }
+  .am-node[data-role="dependency"] {
+    box-shadow: 0 0 0 2px var(--color-primary);
+  }
+  .am-node[data-role="dependent"] {
+    box-shadow: 0 0 0 2px var(--color-accent-strong);
+  }
+  .am-node[data-role="both"] {
+    box-shadow:
+      0 0 0 2px var(--color-primary),
+      0 0 0 5px var(--color-accent-strong);
+  }
+  .am-node[data-role="member"] {
+    box-shadow: 0 0 0 3px var(--color-cycle);
+    border-color: var(--color-cycle);
+  }
+  .am-node[data-match="true"] {
+    background: var(--color-warning-soft);
+    border-color: var(--color-warning);
+  }
+  .am-node__name {
+    font-family: var(--font-mono);
+    font-size: 13px;
+    font-weight: 600;
+    line-height: 1.2;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+  .am-node__sub {
+    font-size: 12px;
+    line-height: 1.2;
+    color: var(--color-muted);
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+  .am-node__tag {
+    flex: none;
+    font-size: 11px;
+    font-weight: 600;
+    line-height: 1;
+    padding: 3px 6px;
+    border-radius: 999px;
+    background: var(--color-ink);
+    color: #fff;
+  }
+}
+
+/* --------------------------------------------------------------- React Flow */
+.react-flow {
+  --xy-background-color: var(--color-surface);
+  --xy-edge-stroke-default: var(--color-edge);
+  font-family: var(--font-sans);
+}
+.react-flow__node {
+  /* hit target is the whole node, never smaller than the 232x56 box */
+  border-radius: 8px;
+}
+.react-flow__node:focus-visible {
+  outline: 2px solid var(--color-focus);
+  outline-offset: 3px;
+}
+.react-flow__edge-path {
+  transition: opacity 180ms var(--ease-out-soft);
+}
+.react-flow__handle {
+  opacity: 0;
+  pointer-events: none;
+}
+.react-flow .react-flow__controls {
+  box-shadow: none;
+  border: 1px solid var(--color-control);
+  border-radius: 8px;
+  overflow: hidden;
+}
+.react-flow .react-flow__controls-button {
+  width: 36px;
+  height: 36px;
+  background: var(--color-bg);
+  color: var(--color-ink);
+  border-bottom: 1px solid var(--color-line);
+}
+.react-flow .react-flow__controls-button:hover {
+  background: var(--color-elevated);
+}
+.react-flow__attribution {
+  font-size: 11px;
+}
+
+/* ------------------------------------------------------------------ motion */
+@media (prefers-reduced-motion: no-preference) {
+  .am-enter {
+    animation: am-enter 240ms var(--ease-out-soft) both;
+  }
+  .am-enter-2 {
+    animation: am-enter 240ms var(--ease-out-soft) 60ms both;
+  }
+  .am-enter-3 {
+    animation: am-enter 240ms var(--ease-out-soft) 120ms both;
+  }
+  .am-drawer {
+    animation: am-drawer 220ms var(--ease-out-soft) both;
+  }
+  .am-fade {
+    animation: am-fade 180ms var(--ease-out-soft) both;
+  }
+}
+@keyframes am-enter {
+  from {
+    opacity: 0;
+    transform: translateY(6px);
+  }
+}
+@keyframes am-drawer {
+  from {
+    opacity: 0;
+    transform: translateY(16px);
+  }
+}
+@keyframes am-fade {
+  from {
+    opacity: 0;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}

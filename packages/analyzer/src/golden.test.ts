@@ -21,7 +21,9 @@ const fixtures = fs
 
 describe("golden fixtures", () => {
   it("covers every fixture directory", () => {
-    expect(fixtures.length).toBe(fs.readdirSync(FIXTURES).length);
+    expect(fixtures.length).toBe(
+      fs.readdirSync(FIXTURES, { withFileTypes: true }).filter((d) => d.isDirectory()).length,
+    );
   });
 
   for (const name of fixtures) {

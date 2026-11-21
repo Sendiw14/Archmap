@@ -1,0 +1,111 @@
+{
+  "metadata": {
+    "analysisId": "a31aa9509b964fde0c7a5401",
+    "schemaVersion": "1.0.0",
+    "analyzerVersion": "0.1.0",
+    "compilerVersion": "typescript@6.0.2",
+    "repository": {
+      "name": "type-cycle",
+      "commit": null
+    },
+    "configHash": "4f091ca6d7b1b09c",
+    "status": "completed",
+    "generatedAt": null,
+    "counts": {
+      "filesDiscovered": 2,
+      "filesAnalyzed": 2,
+      "filesExcluded": 0,
+      "filesSkipped": 0
+    }
+  },
+  "nodes": [
+    {
+      "id": "file:a.ts",
+      "kind": "file",
+      "path": "a.ts",
+      "displayName": "a.ts",
+      "package": null,
+      "language": "ts"
+    },
+    {
+      "id": "file:b.ts",
+      "kind": "file",
+      "path": "b.ts",
+      "displayName": "b.ts",
+      "package": null,
+      "language": "ts"
+    }
+  ],
+  "edges": [
+    {
+      "id": "file:a.ts|import|./b|1:1",
+      "source": "file:a.ts",
+      "target": "file:b.ts",
+      "specifier": "./b",
+      "importKind": "import",
+      "dependencyClass": "type-only",
+      "resolution": "resolved",
+      "evidence": {
+        "file": "a.ts",
+        "line": 1,
+        "column": 1,
+        "text": "import type { B } from \"./b\";"
+      }
+    },
+    {
+      "id": "file:b.ts|import|./a|1:1",
+      "source": "file:b.ts",
+      "target": "file:a.ts",
+      "specifier": "./a",
+      "importKind": "import",
+      "dependencyClass": "runtime",
+      "resolution": "resolved",
+      "evidence": {
+        "file": "b.ts",
+        "line": 1,
+        "column": 1,
+        "text": "import { makeA } from \"./a\";"
+      }
+    }
+  ],
+  "findings": [
+    {
+      "id": "finding:6e67363bd44baf0d",
+      "category": "type-cycle",
+      "severity": "info",
+      "nodes": [
+        "file:a.ts",
+        "file:b.ts"
+      ],
+      "evidence": [
+        "file:a.ts|import|./b|1:1",
+        "file:b.ts|import|./a|1:1"
+      ],
+      "explanation": "2 module(s) form a cycle that involves type-only imports; type-only edges are erased at runtime.",
+      "rule": "scc-tarjan@1"
+    }
+  ],
+  "diagnostics": [],
+  "coverage": {
+    "supportedConstructs": [
+      "import declarations (default, named, namespace, side-effect)",
+      "type-only imports (import type, all-type named imports)",
+      "export ... from re-exports (including export * and type-only)",
+      "CommonJS require() with a string literal",
+      "import x = require('...')",
+      "dynamic import() with a string literal",
+      "typeof import('...') type references",
+      "tsconfig/jsconfig paths, baseUrl, extends (files inside the repository)",
+      "package.json exports/imports via TypeScript module resolution",
+      "workspace packages (package.json name) including source-entry fallback"
+    ],
+    "importKinds": {
+      "import": 2
+    },
+    "resolutions": {
+      "resolved": 2
+    },
+    "unsupportedExpressions": 0,
+    "filesWithParseErrors": 0
+  }
+}

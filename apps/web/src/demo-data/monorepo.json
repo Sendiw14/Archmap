@@ -1,0 +1,128 @@
+{
+  "metadata": {
+    "analysisId": "420132e7875fcff1f03c0a96",
+    "schemaVersion": "1.0.0",
+    "analyzerVersion": "0.1.0",
+    "compilerVersion": "typescript@6.0.2",
+    "repository": {
+      "name": "mono",
+      "commit": null
+    },
+    "configHash": "4f091ca6d7b1b09c",
+    "status": "completed",
+    "generatedAt": null,
+    "counts": {
+      "filesDiscovered": 3,
+      "filesAnalyzed": 3,
+      "filesExcluded": 0,
+      "filesSkipped": 0
+    }
+  },
+  "nodes": [
+    {
+      "id": "external:react",
+      "kind": "external",
+      "path": "react",
+      "displayName": "react",
+      "package": null,
+      "language": null
+    },
+    {
+      "id": "file:packages/app/src/main.tsx",
+      "kind": "file",
+      "path": "packages/app/src/main.tsx",
+      "displayName": "main.tsx",
+      "package": "@mono/app",
+      "language": "tsx"
+    },
+    {
+      "id": "file:packages/core/src/helper.ts",
+      "kind": "file",
+      "path": "packages/core/src/helper.ts",
+      "displayName": "helper.ts",
+      "package": "@mono/core",
+      "language": "ts"
+    },
+    {
+      "id": "file:packages/core/src/index.ts",
+      "kind": "file",
+      "path": "packages/core/src/index.ts",
+      "displayName": "index.ts",
+      "package": "@mono/core",
+      "language": "ts"
+    }
+  ],
+  "edges": [
+    {
+      "id": "file:packages/app/src/main.tsx|import|@mono/core|1:1",
+      "source": "file:packages/app/src/main.tsx",
+      "target": "file:packages/core/src/index.ts",
+      "specifier": "@mono/core",
+      "importKind": "import",
+      "dependencyClass": "runtime",
+      "resolution": "resolved",
+      "evidence": {
+        "file": "packages/app/src/main.tsx",
+        "line": 1,
+        "column": 1,
+        "text": "import { core } from \"@mono/core\";"
+      },
+      "diagnostic": "resolved via workspace source fallback"
+    },
+    {
+      "id": "file:packages/app/src/main.tsx|import|react|2:1",
+      "source": "file:packages/app/src/main.tsx",
+      "target": "external:react",
+      "specifier": "react",
+      "importKind": "import",
+      "dependencyClass": "runtime",
+      "resolution": "external",
+      "evidence": {
+        "file": "packages/app/src/main.tsx",
+        "line": 2,
+        "column": 1,
+        "text": "import { useState } from \"react\";"
+      }
+    },
+    {
+      "id": "file:packages/core/src/index.ts|import|./helper|1:1",
+      "source": "file:packages/core/src/index.ts",
+      "target": "file:packages/core/src/helper.ts",
+      "specifier": "./helper",
+      "importKind": "import",
+      "dependencyClass": "runtime",
+      "resolution": "resolved",
+      "evidence": {
+        "file": "packages/core/src/index.ts",
+        "line": 1,
+        "column": 1,
+        "text": "import { helper } from \"./helper\";"
+      }
+    }
+  ],
+  "findings": [],
+  "diagnostics": [],
+  "coverage": {
+    "supportedConstructs": [
+      "import declarations (default, named, namespace, side-effect)",
+      "type-only imports (import type, all-type named imports)",
+      "export ... from re-exports (including export * and type-only)",
+      "CommonJS require() with a string literal",
+      "import x = require('...')",
+      "dynamic import() with a string literal",
+      "typeof import('...') type references",
+      "tsconfig/jsconfig paths, baseUrl, extends (files inside the repository)",
+      "package.json exports/imports via TypeScript module resolution",
+      "workspace packages (package.json name) including source-entry fallback"
+    ],
+    "importKinds": {
+      "import": 3
+    },
+    "resolutions": {
+      "external": 1,
+      "resolved": 2
+    },
+    "unsupportedExpressions": 0,
+    "filesWithParseErrors": 0
+  }
+}

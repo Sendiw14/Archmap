@@ -2,7 +2,7 @@
 
 Deterministic, evidence-backed dependency graphs for JavaScript and TypeScript repositories.
 
-> Status: early development. The analysis engine and local CLI work; the web workspace and hosted import are not built yet. See [docs/status.md](docs/status.md).
+> Status: early development. The analysis engine, local CLI and web demo (`pnpm --filter @archmap/web dev`, then open /demo) work; the full workspace and hosted import are not built yet. See [docs/status.md](docs/status.md).
 
 ## Quick start
 
