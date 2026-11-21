@@ -51,6 +51,8 @@ export interface AnalyzeOptions {
   maxFileBytes?: number;
   /** Omit generatedAt so output is byte-for-byte reproducible. */
   reproducible?: boolean;
+  /** Repository identity supplied by the caller (hosted mode); overrides package.json / .git detection. */
+  repository?: { name: string; commit: string | null };
   onProgress?: (phase: string, done: number, total: number) => void;
 }
 
@@ -370,7 +372,8 @@ export function analyze(rootInput: string, options: AnalyzeOptions = {}): Analyz
   } catch {
     /* reported above */
   }
-  const commit = readCommit(rootAbs);
+  let commit = readCommit(rootAbs);
+  if (options.repository) ({ name: repoName, commit } = options.repository);
   const configHash = sha(
     JSON.stringify({ exclude: [...exclude].sort(), maxFiles, maxFileBytes }),
   ).slice(0, 16);

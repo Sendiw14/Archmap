@@ -178,7 +178,7 @@ export function createResolver(opts: ResolverOptions) {
 
   /** Map an absolute path to repository-relative, applying the virtual node_modules overlay. */
   const toRel = (abs: string): string | null => {
-    abs = path.normalize(abs);
+    abs = path.normalize(abs).replace(/(.)\/+$/, "$1"); // TS probes directories with a trailing slash
     const nm = `${root}/node_modules/`;
     if (abs.startsWith(nm)) {
       const rest = abs.slice(nm.length);

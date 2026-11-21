@@ -59,3 +59,76 @@ jobs:
         with: { node-version: 24, cache: pnpm }
       - run: pnpm install --frozen-lockfile
       - run: pnpm audit --audit-level high
+
+  integration:
+    name: integration (postgres, redis, s3)
+    runs-on: ubuntu-latest
+    services:
+      postgres:
+        image: postgres:17.6-alpine
+        env: { POSTGRES_USER: archmap, POSTGRES_PASSWORD: archmap-dev, POSTGRES_DB: archmap }
+        ports: ["5432:5432"]
+        options: --health-cmd "pg_isready -U archmap" --health-interval 2s --health-retries 30
+      redis:
+        image: redis:7.4-alpine
+        ports: ["6379:6379"]
+        options: --health-cmd "redis-cli ping" --health-interval 2s --health-retries 30
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with: { persist-credentials: false }
+      - name: Start S3-compatible store
+        run: |
+          docker run -d --name s3 -p 8333:8333 -v "$PWD/infrastructure/seaweedfs-s3.json:/etc/archmap/s3.json:ro" \
+            chrislusf/seaweedfs:3.97 server -dir=/data -s3 -s3.port=8333 -s3.config=/etc/archmap/s3.json
+          for i in $(seq 1 60); do curl -s -o /dev/null http://127.0.0.1:8333/ && break; sleep 2; done
+      - uses: pnpm/action-setup@73e46992e05b19abd31f2f3c20e0e7370d762115 # v6.1.1
+      - uses: actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1 # v7.1.0
+        with: { node-version: 24, cache: pnpm }
+      - run: pnpm install --frozen-lockfile
+      - run: pnpm vitest run tests/integration
+        env:
+          ARCHMAP_IT: "1"
+          DATABASE_URL: postgres://archmap:archmap-dev@127.0.0.1:5432/archmap
+          REDIS_URL: redis://127.0.0.1:6379/0
+          S3_ENDPOINT: http://127.0.0.1:8333
+
+  docker-build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with: { persist-credentials: false }
+      - run: docker build -f infrastructure/Dockerfile -t archmap-server:ci .
+
+  e2e:
+    name: e2e (playwright, axe, memory API)
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with: { persist-credentials: false }
+      - uses: pnpm/action-setup@73e46992e05b19abd31f2f3c20e0e7370d762115 # v6.1.1
+      - uses: actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1 # v7.1.0
+        with: { node-version: 24, cache: pnpm }
+      - run: pnpm install --frozen-lockfile
+      - run: pnpm --filter @archmap/web exec playwright install --with-deps chromium
+      # Playwright builds and starts the web app and the offline memory API itself.
+      - run: pnpm --filter @archmap/web test:e2e
+        env: { CI: "true" }
+
+  cli-package:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with: { persist-credentials: false }
+      - uses: pnpm/action-setup@73e46992e05b19abd31f2f3c20e0e7370d762115 # v6.1.1
+      - uses: actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1 # v7.1.0
+        with: { node-version: 24, cache: pnpm }
+      - run: pnpm install --frozen-lockfile
+      - run: pnpm build:cli && cd apps/cli/dist && npm pack
+      - name: Install tarball in a clean project and compare output with the source CLI
+        run: |
+          dir=$(mktemp -d) && cd "$dir" && npm init -y >/dev/null
+          npm install "$GITHUB_WORKSPACE"/apps/cli/dist/archmap-*.tgz
+          ./node_modules/.bin/archmap analyze "$GITHUB_WORKSPACE/fixtures/monorepo" --reproducible -q > bundle.json
+          cd "$GITHUB_WORKSPACE" && node apps/cli/src/main.ts analyze fixtures/monorepo --reproducible -q > source.json
+          cmp "$dir/bundle.json" source.json

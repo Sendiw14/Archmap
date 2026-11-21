@@ -1,0 +1,10 @@
+**/node_modules
+**/.next
+.git
+docs
+tests
+apps/web/*
+!apps/web/package.json
+**/*.test.ts
+.env
+.env.*

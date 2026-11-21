@@ -1,12 +1,12 @@
 import type { Edge, MarkerType, Node } from "@xyflow/react";
-import type { GraphNode } from "@archmap/graph-schema";
-import type { Highlight, NodeRole, VisibleGraph } from "./model";
+import type { DisplayNode } from "../workspace/aggregate";
+import type { DrawnEdge, Highlight, NodeRole } from "./model";
 import { NODE_HEIGHT, NODE_WIDTH, type LayoutData } from "./layout-input";
 
 /** Graph -> React Flow elements. Pure: all styling decisions are data, rendered in CSS. */
 
 export interface ModuleNodeData extends Record<string, unknown> {
-  node: GraphNode;
+  node: DisplayNode;
   role: NodeRole | null;
   match: boolean;
   dim: boolean;
@@ -22,7 +22,12 @@ export interface FlowOptions {
   selectedId: string | null;
 }
 
-const KIND_LABEL = { file: "file", external: "external package", builtin: "Node.js built-in" };
+const KIND_LABEL = {
+  file: "file",
+  external: "external package",
+  builtin: "Node.js built-in",
+  group: "group",
+};
 const ROLE_LABEL: Record<NodeRole, string> = {
   selected: "selected",
   dependency: "imported by the selection",
@@ -34,6 +39,17 @@ const ROLE_LABEL: Record<NodeRole, string> = {
 const modules = (n: number) => `${n} ${n === 1 ? "module" : "modules"}`;
 
 export function nodeAriaLabel(d: ModuleNodeData, selected: boolean): string {
+  if (d.node.kind === "group") {
+    const n = d.node.memberCount ?? 0;
+    return [
+      `${d.node.displayName}, ${d.node.groupKind === "package" ? "package" : "folder"} group of ${modules(n)}`,
+      `imports ${modules(d.fanOut)}`,
+      `imported by ${modules(d.fanIn)}`,
+      ...(d.role ? [ROLE_LABEL[d.role]] : []),
+      ...(d.match ? ["contains a search match"] : []),
+      "press Enter to expand",
+    ].join(", ");
+  }
   const parts = [
     d.node.displayName,
     KIND_LABEL[d.node.kind],
@@ -47,6 +63,8 @@ export function nodeAriaLabel(d: ModuleNodeData, selected: boolean): string {
   return parts.join(", ");
 }
 
+const DENSE_EDGES = 150;
+
 const EDGE_COLOR = {
   base: "var(--color-edge)",
   outgoing: "var(--color-primary)",
@@ -55,7 +73,7 @@ const EDGE_COLOR = {
 } as const;
 
 export function toFlowElements(
-  vg: VisibleGraph,
+  vg: { nodes: DisplayNode[]; drawn: DrawnEdge[] },
   { positions, routes }: LayoutData,
   { highlight, matches, selectedId }: FlowOptions,
 ): { nodes: ModuleFlowNode[]; edges: Edge[] } {
@@ -95,6 +113,8 @@ export function toFlowElements(
     });
   }
 
+  // Dense graphs: thin, translucent base edges keep the nodes legible; highlighted edges stay solid.
+  const dense = vg.drawn.length > DENSE_EDGES;
   const edges: Edge[] = [];
   for (const e of vg.drawn) {
     if (!positions.has(e.source) || !positions.has(e.target)) continue;
@@ -116,9 +136,9 @@ export function toFlowElements(
       markerEnd: { type: "arrowclosed" as MarkerType, color, width: 16, height: 16 },
       style: {
         stroke: color,
-        strokeWidth: role ? 2.5 : 1.5,
+        strokeWidth: role ? 2.5 : dense ? 1 : 1.5,
         strokeDasharray: e.dependencyClass === "type-only" ? "7 5" : undefined,
-        opacity: dim ? 0.18 : 1,
+        opacity: dim ? 0.18 : dense && !role ? 0.4 : 1,
       },
       data: { role, dependencyClass: e.dependencyClass, dim, points: routes.get(e.id) ?? null },
     });

@@ -107,23 +107,35 @@ export interface Highlight {
 }
 export const NO_HIGHLIGHT: Highlight = { active: false, nodes: new Map(), edges: new Map() };
 
+/** Which neighbours of the selection to highlight. */
+export type Direction = "both" | "incoming" | "outgoing";
+
+export interface HighlightOptions {
+  direction?: Direction;
+  /** Maps a module id to the id drawn for it (a group when its folder is collapsed). */
+  itemOf?: Map<string, string>;
+}
+
 export function computeHighlight(
-  vg: VisibleGraph,
+  vg: Pick<VisibleGraph, "visibleIds" | "drawn">,
   focus: Focus | null,
   findings: Finding[],
+  { direction = "both", itemOf }: HighlightOptions = {},
 ): Highlight {
   if (!focus) return NO_HIGHLIGHT;
   const nodes = new Map<string, NodeRole>();
   const edges = new Map<string, EdgeRole>();
+  const drawnId = (id: string) => itemOf?.get(id) ?? id;
 
   if (focus.kind === "node") {
-    if (!vg.visibleIds.has(focus.id)) return NO_HIGHLIGHT;
-    nodes.set(focus.id, "selected");
+    const self = drawnId(focus.id);
+    if (!vg.visibleIds.has(self)) return NO_HIGHLIGHT;
+    nodes.set(self, "selected");
     for (const e of vg.drawn) {
-      if (e.source === focus.id) {
+      if (e.source === self && direction !== "incoming") {
         edges.set(e.id, "outgoing");
         nodes.set(e.target, nodes.get(e.target) === "dependent" ? "both" : "dependency");
-      } else if (e.target === focus.id) {
+      } else if (e.target === self && direction !== "outgoing") {
         edges.set(e.id, "incoming");
         nodes.set(e.source, nodes.get(e.source) === "dependency" ? "both" : "dependent");
       }
@@ -133,7 +145,10 @@ export function computeHighlight(
 
   const finding = findings.find((f) => f.id === focus.id);
   if (!finding) return NO_HIGHLIGHT;
-  for (const id of finding.nodes) if (vg.visibleIds.has(id)) nodes.set(id, "member");
+  for (const id of finding.nodes) {
+    const shown = drawnId(id);
+    if (vg.visibleIds.has(shown)) nodes.set(shown, "member");
+  }
   const evidence = new Set(finding.evidence);
   for (const e of vg.drawn) if (e.edgeIds.some((id) => evidence.has(id))) edges.set(e.id, "cycle");
   return { active: true, nodes, edges };

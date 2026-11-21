@@ -13,12 +13,17 @@
     "typecheck": "tsc -p tsconfig.json --noEmit && pnpm --filter @archmap/web typecheck",
     "test": "vitest run",
     "archmap": "node apps/cli/src/main.ts",
-    "demo:data": "mkdir -p apps/web/src/demo-data && node apps/cli/src/main.ts analyze . -e 'fixtures/**' -e fixtures -e 'apps/web/**' --reproducible -q -o apps/web/src/demo-data/archmap.json && node apps/cli/src/main.ts analyze fixtures/circular --reproducible -q -o apps/web/src/demo-data/circular.json && node apps/cli/src/main.ts analyze fixtures/monorepo --reproducible -q -o apps/web/src/demo-data/monorepo.json && node apps/cli/src/main.ts analyze fixtures/type-cycle --reproducible -q -o apps/web/src/demo-data/type-cycle.json"
+    "demo:data": "mkdir -p apps/web/src/demo-data && node apps/cli/src/main.ts analyze . -e 'fixtures/**' -e fixtures -e 'apps/web/**' --reproducible -q -o apps/web/src/demo-data/archmap.json && node apps/cli/src/main.ts analyze fixtures/circular --reproducible -q -o apps/web/src/demo-data/circular.json && node apps/cli/src/main.ts analyze fixtures/monorepo --reproducible -q -o apps/web/src/demo-data/monorepo.json && node apps/cli/src/main.ts analyze fixtures/type-cycle --reproducible -q -o apps/web/src/demo-data/type-cycle.json",
+    "openapi": "node apps/api/src/openapi.ts > docs/api/openapi.json",
+    "build:cli": "node apps/cli/build.ts"
   },
   "devDependencies": {
     "@archmap/analyzer": "workspace:^",
+    "@archmap/contracts": "workspace:^",
     "@archmap/graph-schema": "workspace:^",
+    "@archmap/hosted": "workspace:^",
     "@types/node": "24.19.2",
+    "esbuild": "0.28.2",
     "eslint": "^10.15.0",
     "prettier": "^3.10.1",
     "typescript": "6.0.3",

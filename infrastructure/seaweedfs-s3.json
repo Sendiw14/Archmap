@@ -1,0 +1,9 @@
+{
+  "identities": [
+    {
+      "name": "archmap-dev",
+      "credentials": [{ "accessKey": "archmap-dev", "secretKey": "archmap-dev-secret-change-me" }],
+      "actions": ["Admin", "Read", "Write", "List", "Tagging"]
+    }
+  ]
+}

@@ -3,7 +3,7 @@ import fs from "node:fs";
 import { Command, InvalidArgumentError } from "commander";
 import { ANALYZER_VERSION, AnalysisError, analyze, compilerVersion } from "@archmap/analyzer";
 import { SCHEMA_VERSION } from "@archmap/graph-schema";
-import { toMarkdown } from "./report.ts";
+import { toMarkdown } from "@archmap/graph-core/report";
 
 /** Exit codes: 0 ok (incl. limitations), 1 analysis failed, 2 invalid usage. */
 export const EXIT = { ok: 0, failed: 1, usage: 2 } as const;

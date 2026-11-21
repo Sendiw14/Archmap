@@ -73,14 +73,8 @@
       "id": "finding:6e67363bd44baf0d",
       "category": "type-cycle",
       "severity": "info",
-      "nodes": [
-        "file:a.ts",
-        "file:b.ts"
-      ],
-      "evidence": [
-        "file:a.ts|import|./b|1:1",
-        "file:b.ts|import|./a|1:1"
-      ],
+      "nodes": ["file:a.ts", "file:b.ts"],
+      "evidence": ["file:a.ts|import|./b|1:1", "file:b.ts|import|./a|1:1"],
       "explanation": "2 module(s) form a cycle that involves type-only imports; type-only edges are erased at runtime.",
       "rule": "scc-tarjan@1"
     }

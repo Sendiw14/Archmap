@@ -2,7 +2,7 @@
 
 Deterministic, evidence-backed dependency graphs for JavaScript and TypeScript repositories.
 
-> Status: early development. The analysis engine, local CLI and web demo (`pnpm --filter @archmap/web dev`, then open /demo) work; the full workspace and hosted import are not built yet. See [docs/status.md](docs/status.md).
+> Status: v1.0 feature-complete and verified locally; not yet deployed or released. See [docs/status.md](docs/status.md).
 
 ## Quick start
 
@@ -31,6 +31,21 @@ archmap doctor
 ```
 
 Exit codes: `0` success (including "completed with limitations"), `1` analysis failure, `2` invalid input.
+
+## Web app and hosted analysis
+
+```bash
+pnpm --filter @archmap/api dev:memory        # offline API on :4000 (analyzes archmap-fixtures/<name>)
+pnpm --filter @archmap/web build && pnpm --filter @archmap/web start   # http://localhost:3000
+```
+
+Full stack with Postgres, Redis and S3-compatible storage: `docker compose -f infrastructure/docker-compose.yml up -d --build` (API on :4100; rebuild web with `ARCHMAP_API_URL=http://localhost:4100`). Operations: [docs/architecture/operations.md](docs/architecture/operations.md). API: [docs/api/openapi.json](docs/api/openapi.json).
+
+Hosted mode accepts **public GitHub repositories only**, never runs repository code, and deletes results after 24 hours.
+
+## Installable CLI
+
+`pnpm build:cli` produces a publishable package in `apps/cli/dist` (`npm pack apps/cli/dist`).
 
 ## Development
 

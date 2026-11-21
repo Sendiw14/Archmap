@@ -1,0 +1,22 @@
+{
+  "name": "@archmap/api",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "start": "node src/main.ts",
+    "dev:memory": "ARCHMAP_MODE=memory node src/main.ts"
+  },
+  "dependencies": {
+    "@archmap/analyzer": "workspace:*",
+    "@archmap/contracts": "workspace:*",
+    "@archmap/graph-core": "workspace:*",
+    "@archmap/graph-schema": "workspace:*",
+    "@archmap/hosted": "workspace:*",
+    "@fastify/cookie": "11.1.5",
+    "@fastify/helmet": "13.2.0",
+    "@fastify/rate-limit": "11.3.0",
+    "fastify": "5.12.8",
+    "zod": "^4.6.7"
+  }
+}

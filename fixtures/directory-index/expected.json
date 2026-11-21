@@ -1,0 +1,11 @@
+{
+  "status": "completed",
+  "edges": [
+    ["lib/sub/x.ts", "file:lib/index.ts", "import", "runtime", "resolved"],
+    ["lib/sub/x.ts", "file:lib/index.ts", "import", "runtime", "resolved"],
+    ["lib/sub/x.ts", "file:lib/sub/index.ts", "import", "runtime", "resolved"],
+    ["lib/sub/x.ts", "file:lib/sub/index.ts", "import", "runtime", "resolved"]
+  ],
+  "findings": [],
+  "diagnostics": []
+}

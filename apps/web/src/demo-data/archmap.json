@@ -940,9 +940,7 @@
       "id": "finding:d94ed6a51c6e1604",
       "category": "hotspot",
       "severity": "info",
-      "nodes": [
-        "file:packages/graph-schema/src/index.ts"
-      ],
+      "nodes": ["file:packages/graph-schema/src/index.ts"],
       "evidence": [],
       "explanation": "High coupling: fan-in 8, fan-out 0 (threshold 8).",
       "rule": "coupling-zscore@1"

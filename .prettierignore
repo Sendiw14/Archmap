@@ -4,3 +4,5 @@ docs/spec/ARCHMAP_MASTER_SPEC.md
 .next
 next-env.d.ts
 apps/web/src/demo-data
+apps/web/test-results
+apps/web/playwright-report

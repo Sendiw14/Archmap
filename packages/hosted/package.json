@@ -1,0 +1,27 @@
+{
+  "name": "@archmap/hosted",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "exports": {
+    ".": "./src/index.ts",
+    "./postgres": "./src/postgres.ts",
+    "./s3": "./src/s3.ts",
+    "./bullmq": "./src/bullmq.ts"
+  },
+  "dependencies": {
+    "@archmap/analyzer": "workspace:*",
+    "@archmap/contracts": "workspace:*",
+    "@archmap/graph-schema": "workspace:*",
+    "@aws-sdk/client-s3": "3.1175.0",
+    "bullmq": "6.7.8",
+    "drizzle-orm": "0.45.4",
+    "ioredis": "6.0.0",
+    "pg": "8.23.1",
+    "tar": "7.5.23",
+    "zod": "^4.6.7"
+  },
+  "devDependencies": {
+    "@types/pg": "8.23.1"
+  }
+}

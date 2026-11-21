@@ -5,7 +5,8 @@
   "type": "module",
   "exports": {
     ".": "./src/index.ts",
-    "./findings": "./src/findings.ts"
+    "./findings": "./src/findings.ts",
+    "./report": "./src/report.ts"
   },
   "dependencies": {
     "@archmap/graph-schema": "workspace:*"

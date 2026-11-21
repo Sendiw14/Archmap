@@ -20,6 +20,10 @@ pnpm install
 pnpm test        # vitest: golden fixtures, algorithms, CLI, security
 pnpm typecheck && pnpm lint && pnpm format
 pnpm archmap analyze <path> [-f json|markdown] [-o file] [-e glob] [--reproducible]
+pnpm --filter @archmap/api dev:memory   # offline API (fixtures)
+pnpm --filter @archmap/web test:e2e     # Playwright + axe
+ARCHMAP_IT=1 pnpm vitest run tests/integration   # needs infrastructure/docker-compose.yml
+pnpm openapi && pnpm build:cli && pnpm demo:data
 ```
 
 Node ≥ 22.18 (runs TypeScript sources via native type stripping; erasable syntax only — no enums/namespaces/parameter properties).
