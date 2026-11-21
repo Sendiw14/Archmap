@@ -17,6 +17,9 @@ fs.writeFileSync(
     `import ${JSON.stringify(`${outside}/secret`)};`,
     `import "../outside/secret";`,
     `import "./big";`,
+    `import "C:\\\\Windows\\\\system32\\\\x";`,
+    `import "D:/data/secret";`,
+    `import "\\\\\\\\server\\\\share\\\\x";`,
   ].join("\n"),
 );
 fs.symlinkSync(outside, path.join(repo, "outside"), "junction"); // junction: works unprivileged on Windows
@@ -36,7 +39,8 @@ describe("analyzer trust boundaries", () => {
   it("never resolves targets outside the repository root", () => {
     for (const n of graph.nodes)
       expect(n.path.startsWith("..") || n.path.startsWith("/")).toBe(false);
-    expect(graph.edges.filter((e) => e.resolution === "unresolved")).toHaveLength(4);
+    expect(graph.edges.filter((e) => e.resolution === "unresolved")).toHaveLength(7);
+    expect(graph.nodes.filter((n) => n.kind === "external")).toEqual([]);
   });
   it("does not follow symlinks", () => {
     expect(

@@ -335,7 +335,12 @@ export function createResolver(opts: ResolverOptions) {
         const rel = toRel(host.realpath!(resolved));
         if (rel !== null && opts.files.has(rel)) return { kind: "file", path: rel };
       }
-      const isRelative = spec.startsWith(".") || spec.startsWith("/");
+      // Paths, not package names: relative, POSIX absolute, Windows drive (C:\ or C:/), UNC or backslash.
+      const isRelative =
+        spec.startsWith(".") ||
+        spec.startsWith("/") ||
+        /^[A-Za-z]:[\\/]/.test(spec) ||
+        spec.includes("\\");
       if (!isRelative && !spec.startsWith("#") && !matchesAlias(spec, options)) {
         const name = packageNameOf(spec);
         if (opts.workspacePackages.has(name)) {
