@@ -243,11 +243,14 @@ export function ImportForm() {
                 {failure.copy.actionLabel}
               </button>
             )}
-            {code && ["rate_limited", "imports_disabled", "queue_full"].includes(code) && (
-              <Link href="/demo" className="am-btn am-btn-sm">
-                Explore the demo meanwhile
-              </Link>
-            )}
+            {code &&
+              ["rate_limited", "imports_disabled", "queue_full", "service_unavailable"].includes(
+                code,
+              ) && (
+                <Link href="/demo" className="am-btn am-btn-sm">
+                  Explore the demo meanwhile
+                </Link>
+              )}
           </div>
         </div>
       )}

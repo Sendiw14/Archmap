@@ -28,4 +28,4 @@ Not measured: sustained throughput, worker behaviour under concurrent large repo
 | Restart Redis                                                              | Readiness recovered; next submission (sindresorhus/is) completed normally.                                                                                                                                                                                                                                                                          |
 | GitHub errors                                                              | Nonexistent repo → 404 `repository_not_found`; bad ref → 404 `ref_not_found`; transient failures retried (unit-tested).                                                                                                                                                                                                                             |
 
-Known gap: a store outage during `POST /v1/analyses` returns 500 `internal` rather than 503.
+Follow-up: store outages during `POST /v1/analyses` now return 503 `service_unavailable` with `Retry-After: 30` (verified by stopping Postgres on the stack).

@@ -1,7 +1,8 @@
 import { expect, test } from "@playwright/test";
 import { ALL_ROUTES, dismissTour, waitForRoute } from "./helpers";
 
-const WIDTHS = [360, 390, 430, 768, 1024, 1440, 1920];
+// 320 = WCAG 2.2 SC 1.4.10 reflow (1280 px at 400% zoom).
+const WIDTHS = [320, 360, 390, 430, 768, 1024, 1440, 1920];
 
 /** Spec 12.1: no page-level horizontal overflow at any representative width. */
 test.describe("no horizontal overflow", () => {

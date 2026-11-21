@@ -114,6 +114,7 @@ export const ErrorCode = z.enum([
   "github_unavailable",
   "imports_disabled",
   "queue_full",
+  "service_unavailable",
   "not_found",
   "expired",
   "not_ready",

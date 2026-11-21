@@ -205,6 +205,44 @@ describe("input validation", () => {
   });
 });
 
+describe("dependency outages", () => {
+  it("returns 503 service_unavailable with Retry-After when the store is down", async () => {
+    const { create, store } = await setup();
+    store.findReusable = async () => {
+      throw Object.assign(new Error("connect ECONNREFUSED 10.0.0.5:5432"), {
+        code: "ECONNREFUSED",
+      });
+    };
+    const r = await create("archmap-fixtures/esm");
+    expect(r.statusCode).toBe(503);
+    expect(r.headers["retry-after"]).toBe("30");
+    expect(r.json().error.code).toBe("service_unavailable");
+    expect(r.body).not.toContain("10.0.0.5");
+  });
+
+  it("recognises driver errors wrapped by the ORM (cause chain)", async () => {
+    const { create, store } = await setup();
+    store.findReusable = async () => {
+      const driver = Object.assign(new Error("getaddrinfo ENOTFOUND postgres"), {
+        code: "ENOTFOUND",
+      });
+      throw Object.assign(new Error("Failed query: select ..."), {
+        name: "DrizzleQueryError",
+        cause: driver,
+      });
+    };
+    expect((await create("archmap-fixtures/esm")).json().error.code).toBe("service_unavailable");
+  });
+
+  it("still reports genuine bugs as internal", async () => {
+    const { create, store } = await setup();
+    store.findReusable = async () => {
+      throw new TypeError("cannot read properties of undefined");
+    };
+    expect((await create("archmap-fixtures/esm")).statusCode).toBe(500);
+  });
+});
+
 describe("quotas and safe-disable", () => {
   it("limits new analyses per client per hour", async () => {
     const { create, store } = await setup({ limits: { submissionsPerClientPerHour: 2 } });

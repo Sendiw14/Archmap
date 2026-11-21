@@ -97,6 +97,7 @@ test.describe("import page", () => {
     ["rate_limited", 429, "rate_limited", /Too many analyses/, "Try again later"],
     ["imports_disabled", 503, "imports_disabled", /Hosted import is paused/, "Use the CLI instead"],
     ["queue_full", 503, "queue_full", /analysis queue is full/, "Try again"],
+    ["service_unavailable", 503, "service_unavailable", /temporarily unavailable/, "Try again"],
     ["repository_not_found", 404, "repository_not_found", /Repository not found/],
     [
       "repository_not_public",

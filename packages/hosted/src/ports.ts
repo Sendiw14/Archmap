@@ -84,6 +84,47 @@ export interface SourceProvider {
   download(r: ResolvedRepository, maxBytes: number, signal: AbortSignal): Promise<Buffer>;
 }
 
+const OUTAGE_CODES = new Set([
+  "ECONNREFUSED",
+  "ECONNRESET",
+  "ETIMEDOUT",
+  "EHOSTUNREACH",
+  "ENOTFOUND",
+  "EPIPE",
+  "EAI_AGAIN",
+  // Postgres: admin shutdown / cannot connect now / connection failures
+  "57P01",
+  "57P02",
+  "57P03",
+  "08000",
+  "08001",
+  "08003",
+  "08006",
+]);
+
+/** True for connection-level failures of Postgres, Redis or S3 (dependency outage, not a bug). */
+export function isDependencyOutage(err: unknown, depth = 0): boolean {
+  const e = err as {
+    code?: unknown;
+    name?: string;
+    message?: string;
+    $metadata?: { httpStatusCode?: number };
+  };
+  if (!e) return false;
+  // Drivers/ORMs wrap the network error (e.g. DrizzleQueryError.cause); check the chain.
+  if (
+    depth < 5 &&
+    (e as { cause?: unknown }).cause &&
+    isDependencyOutage((e as { cause?: unknown }).cause, depth + 1)
+  )
+    return true;
+  if (typeof e.code === "string" && OUTAGE_CODES.has(e.code)) return true;
+  if (e?.$metadata?.httpStatusCode !== undefined && e.$metadata.httpStatusCode >= 500) return true;
+  return /Connection terminated|connection timeout|Connection is closed|timeout exceeded when trying to connect/i.test(
+    e?.message ?? "",
+  );
+}
+
 export class HostedError extends Error {
   readonly code: ErrorCode;
   readonly retryable: boolean;

@@ -18,6 +18,7 @@ import { ArchmapGraph, SCHEMA_VERSION } from "@archmap/graph-schema";
 import {
   HostedError,
   cacheKeyFor,
+  isDependencyOutage,
   type AnalysisRecord,
   type AnalysisStore,
   type ArtifactStore,
@@ -62,6 +63,7 @@ const HTTP: Record<ErrorCode, number> = {
   github_unavailable: 503,
   imports_disabled: 503,
   queue_full: 503,
+  service_unavailable: 503,
   not_found: 404,
   expired: 410,
   not_ready: 409,
@@ -133,6 +135,15 @@ export async function buildApp(deps: ApiDeps, cfg: ApiConfig) {
     if (e.statusCode === 429) return fail(reply, "rate_limited", "Too many requests; slow down");
     if (e.statusCode && e.statusCode >= 400 && e.statusCode < 500)
       return fail(reply, "invalid_request", "Malformed request");
+    if (isDependencyOutage(err)) {
+      req.log.error({ err }, "dependency unavailable");
+      reply.header("retry-after", "30");
+      return fail(
+        reply,
+        "service_unavailable",
+        "ARCHMAP is temporarily unavailable; try again shortly",
+      );
+    }
     req.log.error({ err }, "unhandled error");
     return fail(reply, "internal", "Internal error");
   });

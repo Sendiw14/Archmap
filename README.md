@@ -53,4 +53,4 @@ Hosted mode accepts **public GitHub repositories only**, never runs repository c
 
 ## License
 
-MIT (pending maintainer confirmation) — see [LICENSE](LICENSE).
+MIT — see [LICENSE](LICENSE).

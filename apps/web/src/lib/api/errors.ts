@@ -82,6 +82,13 @@ export const ERROR_COPY: Record<ErrorCode, ErrorCopy> = {
     action: "retry",
     actionLabel: "Try again",
   },
+  service_unavailable: {
+    title: "ARCHMAP is temporarily unavailable",
+    message:
+      "A storage or queue service did not respond. Nothing is wrong with your repository; try again in a minute. The CLI works offline.",
+    action: "retry",
+    actionLabel: "Try again",
+  },
   not_found: {
     title: "Analysis not found",
     message: "No analysis has this ID. The link may be mistyped, or the analysis was deleted.",

@@ -95,7 +95,8 @@ export function ModuleList({
                     <span className="block break-all font-mono text-[12.5px] font-semibold leading-snug">
                       <HighlightedText text={r.path} ranges={hits?.get(r.id)?.ranges} />
                     </span>
-                    <span className="block text-[12px] text-muted">
+                    {/* anywhere: long package names must not force page overflow at 320 px (WCAG 1.4.10) */}
+                    <span className="block text-[12px] text-muted [overflow-wrap:anywhere]">
                       {r.kind === "file"
                         ? [r.package, r.language].filter(Boolean).join(" · ") || "file"
                         : r.kind === "external"
