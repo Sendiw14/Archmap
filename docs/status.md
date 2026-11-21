@@ -8,11 +8,10 @@ _Last updated: 2026-11-22. Format follows spec §23. "Verified" means an execute
 
 Release blockers (spec §21):
 
-1. **CI has never run on GitHub.** No remote is configured. Linux on Node 22 and 24 is verified in containers; Windows, the Docker build job and the integration job are unverified on GitHub runners.
-2. **No production deployment.** Owner chose to prepare only (no paid infrastructure yet); vendor-neutral guide in `docs/architecture/deployment.md`. Smoke tests ran only against the local Docker stack.
-3. **Manual accessibility pass not done.** Automated axe checks show zero serious/critical violations on 19 routes, but there has been no screen-reader session (VoiceOver/NVDA) and no manual zoom review (320 px reflow is automated).
-4. **Core Web Vitals field data does not exist.** Only lab measurements were taken.
-5. **Worker egress restriction is deployment-level.** It must be enforced by the hosting network policy (ADR-0005).
+1. **No production deployment.** Owner chose to prepare only (no paid infrastructure yet); vendor-neutral guide in `docs/architecture/deployment.md`. Smoke tests ran only against the local Docker stack.
+2. **Manual accessibility pass not done.** Automated axe checks show zero serious/critical violations on 19 routes, but there has been no screen-reader session (VoiceOver/NVDA) and no manual zoom review (320 px reflow is automated).
+3. **Core Web Vitals field data does not exist.** Only lab measurements were taken.
+4. **Worker egress restriction is deployment-level.** It must be enforced by the hosting network policy (ADR-0005).
 
 ## Milestones
 
@@ -26,6 +25,10 @@ Release blockers (spec §21):
 | M5 Hosted ingestion           | Gate passed locally | 13 API + 16 pipeline + 23 contract tests; 7/7 real Postgres/Redis/S3 tests; live GitHub runs; worker-kill, Postgres and Redis outage drills (`docs/benchmarks/hosted.md`).                                                                               |
 | M6 Website & docs             | Gate passed locally | All §9 routes; axe: 0 serious/critical on 19 routes; no overflow at 360–1920 px; 56 screenshots in `docs/design/screenshots/`.                                                                                                                           |
 | M7 Production validation      | **Blocked**         | See verdict.                                                                                                                                                                                                                                             |
+
+## GitHub Actions
+
+Run 44949900582 on `main` (2026-11-22): **all 12 jobs passed**: format, lint, typecheck; tests on ubuntu (Node 22, 24), macOS (Node 24), Windows (Node 24); integration (Postgres, Redis, S3); Docker build; E2E (Playwright, axe, memory API); CLI package; dependency audit. The first run failed only on Windows (Windows absolute paths classified as packages); fixed in `Treat Windows and backslash paths as paths, not packages`.
 
 ## Test execution (2026-11-22, Apple M4, Node 24.11.1)
 
@@ -89,7 +92,7 @@ Opus 5.5 led and built the analyzer, CLI, contracts, hosted API/worker/infrastru
 
 ## Recommended next iteration
 
-1. Push to GitHub, run CI, fix platform-specific failures (Windows paths, symlink test).
+1. Keep CI green; add branch protection requiring all CI jobs.
 2. Choose hosting (frontend, API, worker containers, managed Postgres/Redis/S3), apply the egress policy, deploy, run the smoke test against it.
 3. Manual screen-reader and zoom pass; collect real-user Web Vitals.
 4. Owner decisions: npm package name for `archmap`, hosting vendor, public launch.
