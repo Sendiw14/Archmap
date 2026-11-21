@@ -1,0 +1,10 @@
+{
+  "status": "completed_with_limitations",
+  "edges": [
+    ["app/main.ts", "file:packages/lib/src/feature.ts", "import", "runtime", "resolved"],
+    ["app/main.ts", "file:packages/lib/src/index.ts", "import", "runtime", "resolved"],
+    ["app/main.ts", null, "import", "runtime", "unresolved"]
+  ],
+  "findings": ["unresolved"],
+  "diagnostics": []
+}

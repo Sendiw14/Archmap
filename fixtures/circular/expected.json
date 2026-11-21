@@ -1,0 +1,12 @@
+{
+  "status": "completed",
+  "edges": [
+    ["a.ts", "file:b.ts", "import", "runtime", "resolved"],
+    ["b.ts", "file:c.ts", "import", "runtime", "resolved"],
+    ["c.ts", "file:a.ts", "import", "runtime", "resolved"],
+    ["d.ts", "file:a.ts", "import", "runtime", "resolved"]
+  ],
+  "findings": ["runtime-cycle"],
+  "cycles": [["file:a.ts", "file:b.ts", "file:c.ts"]],
+  "diagnostics": []
+}

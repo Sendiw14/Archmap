@@ -1,0 +1,12 @@
+{
+  "status": "completed",
+  "edges": [
+    ["a.ts", "file:t.ts", "export", "type-only", "resolved"],
+    ["a.ts", "file:t.ts", "import", "type-only", "resolved"],
+    ["a.ts", "file:u.ts", "import", "type-only", "resolved"],
+    ["a.ts", "file:v.ts", "import", "runtime", "resolved"],
+    ["a.ts", "file:w.ts", "import-type", "type-only", "resolved"]
+  ],
+  "findings": [],
+  "diagnostics": []
+}

@@ -1,0 +1,8 @@
+{
+  "compilerOptions": {
+    "baseUrl": ".",
+    "moduleResolution": "bundler",
+    "module": "esnext",
+    "paths": { "@/*": ["src/*"], "config": ["src/config/index.ts"] }
+  }
+}

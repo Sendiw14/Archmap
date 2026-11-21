@@ -1,0 +1,9 @@
+{
+  "status": "completed",
+  "edges": [
+    ["packages/x/src/index.ts", "file:packages/x/src/util.ts", "import", "runtime", "resolved"],
+    ["packages/y/src/index.ts", "file:packages/x/src/index.ts", "import", "runtime", "resolved"]
+  ],
+  "findings": [],
+  "diagnostics": []
+}

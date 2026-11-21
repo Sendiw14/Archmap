@@ -1,0 +1,9 @@
+{
+  "status": "completed_with_limitations",
+  "edges": [
+    ["main.ts", "file:foo.ts", "import", "runtime", "resolved"],
+    ["main.ts", null, "import", "runtime", "unresolved"]
+  ],
+  "findings": ["unresolved"],
+  "diagnostics": []
+}

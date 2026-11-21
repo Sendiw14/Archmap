@@ -1,0 +1,9 @@
+{
+  "status": "completed",
+  "edges": [
+    ["main.ts", "file:lazy.ts", "dynamic-import", "runtime", "resolved"],
+    ["main.ts", "file:tpl.ts", "dynamic-import", "runtime", "resolved"]
+  ],
+  "findings": [],
+  "diagnostics": []
+}

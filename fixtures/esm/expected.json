@@ -1,0 +1,12 @@
+{
+  "status": "completed",
+  "edges": [
+    ["src/a.ts", "file:src/b.ts", "import", "runtime", "resolved"],
+    ["src/a.ts", "file:src/c.ts", "import", "runtime", "resolved"],
+    ["src/a.ts", "file:src/d.ts", "import", "runtime", "resolved"],
+    ["src/a.ts", "file:src/e.ts", "import", "runtime", "resolved"],
+    ["src/a.ts", "file:src/data.json", "import", "runtime", "resolved"]
+  ],
+  "findings": [],
+  "diagnostics": []
+}

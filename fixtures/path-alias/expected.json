@@ -1,0 +1,10 @@
+{
+  "status": "completed_with_limitations",
+  "edges": [
+    ["src/app.ts", "file:src/config/index.ts", "import", "runtime", "resolved"],
+    ["src/app.ts", "file:src/lib/util.ts", "import", "runtime", "resolved"],
+    ["src/app.ts", null, "import", "runtime", "unresolved"]
+  ],
+  "findings": ["unresolved"],
+  "diagnostics": []
+}

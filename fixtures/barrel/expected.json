@@ -1,0 +1,10 @@
+{
+  "status": "completed",
+  "edges": [
+    ["src/app.tsx", "file:src/components/index.ts", "import", "runtime", "resolved"],
+    ["src/components/index.ts", "file:src/components/Button.tsx", "export", "runtime", "resolved"],
+    ["src/components/index.ts", "file:src/components/Card.tsx", "export", "runtime", "resolved"]
+  ],
+  "findings": [],
+  "diagnostics": []
+}

@@ -1,0 +1,11 @@
+{
+  "status": "completed",
+  "edges": [
+    ["packages/app/src/main.tsx", "external:react", "import", "runtime", "external"],
+    ["packages/app/src/main.tsx", "file:packages/core/src/index.ts", "import", "runtime", "resolved"],
+    ["packages/core/src/index.ts", "file:packages/core/src/helper.ts", "import", "runtime", "resolved"]
+  ],
+  "findings": [],
+  "diagnostics": [],
+  "packages": { "packages/app/src/main.tsx": "@mono/app", "packages/core/src/index.ts": "@mono/core" }
+}

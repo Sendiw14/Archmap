@@ -1,0 +1,10 @@
+{
+  "status": "completed",
+  "edges": [
+    ["index.ts", "file:x.ts", "export", "runtime", "resolved"],
+    ["index.ts", "file:y.ts", "export", "runtime", "resolved"],
+    ["index.ts", "file:z.ts", "export", "runtime", "resolved"]
+  ],
+  "findings": [],
+  "diagnostics": []
+}

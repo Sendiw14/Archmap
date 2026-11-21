@@ -1,0 +1,6 @@
+{
+  "status": "completed_with_limitations",
+  "edges": [["bad.ts", "file:ok.ts", "import", "runtime", "resolved"]],
+  "findings": [],
+  "diagnostics": ["parse-error"]
+}

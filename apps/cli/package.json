@@ -1,0 +1,15 @@
+{
+  "name": "@archmap/cli",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "bin": {
+    "archmap": "./src/main.ts"
+  },
+  "dependencies": {
+    "@archmap/analyzer": "workspace:*",
+    "@archmap/graph-core": "workspace:*",
+    "@archmap/graph-schema": "workspace:*",
+    "commander": "^15.1.0"
+  }
+}

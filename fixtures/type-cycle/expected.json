@@ -1,0 +1,10 @@
+{
+  "status": "completed",
+  "edges": [
+    ["a.ts", "file:b.ts", "import", "type-only", "resolved"],
+    ["b.ts", "file:a.ts", "import", "runtime", "resolved"]
+  ],
+  "findings": ["type-cycle"],
+  "cycles": [["file:a.ts", "file:b.ts"]],
+  "diagnostics": []
+}

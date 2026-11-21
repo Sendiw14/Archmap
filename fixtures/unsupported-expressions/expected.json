@@ -1,0 +1,6 @@
+{
+  "status": "completed_with_limitations",
+  "edges": [["main.js", "file:ok.js", "require", "runtime", "resolved"]],
+  "findings": [],
+  "diagnostics": ["unsupported-expression", "unsupported-expression"]
+}

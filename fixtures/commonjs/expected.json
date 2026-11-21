@@ -1,0 +1,11 @@
+{
+  "status": "completed",
+  "edges": [
+    ["legacy.ts", "file:util.cjs", "require", "runtime", "resolved"],
+    ["main.cjs", "builtin:node:fs", "require", "runtime", "external"],
+    ["main.cjs", "external:lodash", "require", "runtime", "external"],
+    ["main.cjs", "file:util.cjs", "require", "runtime", "resolved"]
+  ],
+  "findings": [],
+  "diagnostics": []
+}
